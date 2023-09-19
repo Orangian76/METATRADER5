@@ -207,7 +207,7 @@ void OnTick()
    MqlDateTime T;
    TimeToStruct(tm,T);
 
-
+\\ for test
 
 
    if(b==0 && T.hour>3 && T.hour<23 && T.day_of_year<350 && T.day_of_year>6)
