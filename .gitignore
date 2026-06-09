@@ -1,0 +1,15 @@
+# MetaTrader / MQL5 build outputs
+*.ex5
+*.log
+*.tmp
+
+# MetaEditor backups
+*.bak
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# IDE / editor
+.vscode/
+.idea/
