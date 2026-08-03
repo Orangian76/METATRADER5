@@ -6,12 +6,17 @@
 ![Language](https://img.shields.io/badge/languages-MQL5%20%7C%20C%23-512BD4)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Release status](https://img.shields.io/badge/release-ready%20for%20Windows%20validation-orange)
 
 [راهنمای فارسی](README_FA.md)
 
 A local, quote-only monitoring system for comparing live Bid/Ask prices from two MetaTrader 5 terminals. It consists of an MQL5 tick agent installed in each terminal and a Windows C# coordinator that receives quotes over TCP, displays both feeds, calculates executable cross-broker edges, detects stale data, and writes CSV logs.
 
 > This project never opens, modifies, or closes trades. It is a monitoring and research tool, not an arbitrage execution bot.
+
+## Release status
+
+The repository is structurally complete and ready for manual Windows and MetaTrader 5 validation. See [`FINAL_RELEASE_AUDIT.md`](FINAL_RELEASE_AUDIT.md) and repository issue `#3` before publishing the official `v1.0.0` release.
 
 ## Architecture
 
@@ -55,6 +60,7 @@ CrossBrokerPriceMonitor/
 ├── CONTRIBUTING.md
 ├── SECURITY.md
 ├── CODE_OF_CONDUCT.md
+├── FINAL_RELEASE_AUDIT.md
 ├── Coordinator/
 │   ├── Coordinator.cs
 │   ├── build.bat
@@ -152,6 +158,7 @@ Thresholds should be calibrated from collected data rather than treated as tradi
 - [TCP protocol](docs/protocol.md)
 - [CSV formats](docs/csv-format.md)
 - [FAQ and troubleshooting](docs/FAQ.md)
+- [Final release audit](FINAL_RELEASE_AUDIT.md)
 - [Security policy](SECURITY.md)
 - [Contributing guide](CONTRIBUTING.md)
 
