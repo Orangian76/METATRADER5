@@ -1,0 +1,25 @@
+# Coordinator build outputs
+Coordinator/*.exe
+Coordinator/*.pdb
+Coordinator/*.config
+Coordinator/logs/
+
+# Runtime configuration
+Coordinator/config.ini
+
+# MetaTrader compiled files and logs
+MQL5/*.ex5
+MQL5/Files/
+*.log
+*.tmp
+*.bak
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.user
+*.suo
