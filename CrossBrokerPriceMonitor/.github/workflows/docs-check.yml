@@ -1,0 +1,22 @@
+name: Documentation Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify required documentation
+        run: |
+          test -f README.md
+          test -f README_FA.md
+          test -f LICENSE
+          test -f CHANGELOG.md
+          test -f CONTRIBUTING.md
+          test -f SECURITY.md
+          test -f CODE_OF_CONDUCT.md
