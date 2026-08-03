@@ -1,0 +1,54 @@
+name: CrossBroker Project Check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'CrossBrokerPriceMonitor/**'
+      - '.github/workflows/crossbroker-docs-check.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'CrossBrokerPriceMonitor/**'
+      - '.github/workflows/crossbroker-docs-check.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-project:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate required files
+        shell: pwsh
+        run: |
+          $required = @(
+            'CrossBrokerPriceMonitor/README.md',
+            'CrossBrokerPriceMonitor/README_FA.md',
+            'CrossBrokerPriceMonitor/LICENSE',
+            'CrossBrokerPriceMonitor/CHANGELOG.md',
+            'CrossBrokerPriceMonitor/Coordinator/Coordinator.cs',
+            'CrossBrokerPriceMonitor/Coordinator/build.bat',
+            'CrossBrokerPriceMonitor/MQL5/CrossBrokerTickAgent.mq5',
+            'CrossBrokerPriceMonitor/docs/protocol.md',
+            'CrossBrokerPriceMonitor/docs/csv-format.md'
+          )
+          $missing = $required | Where-Object { -not (Test-Path $_) }
+          if ($missing) {
+            Write-Error ('Missing required files: ' + ($missing -join ', '))
+            exit 1
+          }
+
+      - name: Compile Windows coordinator
+        shell: cmd
+        working-directory: CrossBrokerPriceMonitor/Coordinator
+        run: build.bat
+
+      - name: Verify executable
+        shell: pwsh
+        run: |
+          if (-not (Test-Path 'CrossBrokerPriceMonitor/Coordinator/CrossBrokerPriceMonitor.exe')) {
+            Write-Error 'Coordinator executable was not produced.'
+            exit 1
+          }
