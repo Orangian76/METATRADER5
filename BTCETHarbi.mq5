@@ -283,28 +283,28 @@ if((b2==0||Vol>=(SymbolInfoDouble(pair_1,SYMBOL_BID)/SymbolInfoDouble(pair_2,SYM
            
                
 
-           if(string(inf.Magic())==MajB) 
-            {
-             TempProfit1= inf.Profit()+inf.Swap()+inf.Commission();
-             profit1=profit1+TempProfit1;
+           if(inf.Magic()==MajB)
+           {
+            TempProfit1= inf.Profit()+inf.Swap()+inf.Commission();
+            profit1=profit1+TempProfit1;
 
-            }
-            
-           if(string(inf.Magic())==MajS) 
-            {
-             TempProfit2= inf.Profit()+inf.Swap()+inf.Commission();
-             profit2=profit2+TempProfit2;
+           }
 
-            }
-           if(string(inf.Magic())==MajIB) 
-            {
-             TempProfit3= inf.Profit()+inf.Swap()+inf.Commission();
-             profit3=profit3+TempProfit3;
+           if(inf.Magic()==MajS)
+           {
+            TempProfit2= inf.Profit()+inf.Swap()+inf.Commission();
+            profit2=profit2+TempProfit2;
 
-            }
-            
-           if(string(inf.Magic())==MajIS) 
-            {
+           }
+           if(inf.Magic()==MajIB)
+           {
+            TempProfit3= inf.Profit()+inf.Swap()+inf.Commission();
+            profit3=profit3+TempProfit3;
+
+           }
+
+           if(inf.Magic()==MajIS)
+           {
              TempProfit4= inf.Profit()+inf.Swap()+inf.Commission();
              profit4=profit4+TempProfit4;
 
