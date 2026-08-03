@@ -1,0 +1,22 @@
+CrossBrokerTickAgent — Agent A example
+
+InpAgentId=A
+InpBrokerLabel=Broker A
+InpSymbolToWatch=BTCUSD
+InpCoordinatorHost=127.0.0.1
+InpCoordinatorPort=19090
+InpConnectTimeoutMs=500
+InpSocketSendTimeoutMs=100
+InpReconnectSeconds=2
+InpHeartbeatSeconds=2
+InpSendEveryTick=true
+InpMinimumIntervalMs=0
+InpPrintConnectionLog=true
+InpSaveLocalCsv=true
+InpCsvFilePrefix=CrossBrokerTicks
+InpCsvFlushEveryRows=100
+
+Notes:
+- Replace Broker A with the actual broker/server label.
+- Replace BTCUSD with the exact symbol used by the first broker.
+- Attach the EA to the watched symbol chart for full OnTick accuracy.
