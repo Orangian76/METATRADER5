@@ -1,0 +1,10 @@
+# Cross Broker Price Monitor example configuration
+Port=19090
+AgentA=A
+AgentB=B
+WarningUsd=10
+AlertUsd=25
+StaleMilliseconds=1500
+ColorMetric=ExecutableEdge
+LogDirectory=logs
+AutoStart=True
