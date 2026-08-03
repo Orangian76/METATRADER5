@@ -1,5 +1,12 @@
 # Cross-Broker Price Monitor
 
+[![Project Check](https://github.com/Orangian76/METATRADER5/actions/workflows/crossbroker-docs-check.yml/badge.svg)](https://github.com/Orangian76/METATRADER5/actions/workflows/crossbroker-docs-check.yml)
+![Platform](https://img.shields.io/badge/platform-Windows-0078D6)
+![MetaTrader](https://img.shields.io/badge/MetaTrader-5-1C75BC)
+![Language](https://img.shields.io/badge/languages-MQL5%20%7C%20C%23-512BD4)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+
 [راهنمای فارسی](README_FA.md)
 
 A local, quote-only monitoring system for comparing live Bid/Ask prices from two MetaTrader 5 terminals. It consists of an MQL5 tick agent installed in each terminal and a Windows C# coordinator that receives quotes over TCP, displays both feeds, calculates executable cross-broker edges, detects stale data, and writes CSV logs.
@@ -13,6 +20,8 @@ MT5 Broker A ── CrossBrokerTickAgent.mq5 ──┐
                                             ├── TCP 127.0.0.1:19090 ── C# Coordinator ── UI + CSV
 MT5 Broker B ── CrossBrokerTickAgent.mq5 ──┘
 ```
+
+See the full diagram in [`docs/architecture.svg`](docs/architecture.svg).
 
 ## Metrics
 
@@ -33,6 +42,7 @@ The first two values are raw executable quote differences before commission, sli
 - Demo mode for testing without MT5
 - Loopback-only listener for a reduced attack surface
 - Supports different broker symbol names such as `BTCUSD` and `BTCUSDm`
+- Windows CI build and required-file validation through GitHub Actions
 
 ## Project structure
 
@@ -41,15 +51,27 @@ CrossBrokerPriceMonitor/
 ├── README.md
 ├── README_FA.md
 ├── LICENSE
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── SECURITY.md
+├── CODE_OF_CONDUCT.md
 ├── Coordinator/
 │   ├── Coordinator.cs
 │   ├── build.bat
 │   ├── run.bat
-│   └── config.ini
-└── MQL5/
-    ├── CrossBrokerTickAgent.mq5
-    ├── Agent_A_Example.txt
-    └── Agent_B_Example.txt
+│   └── config.ini.example
+├── MQL5/
+│   ├── CrossBrokerTickAgent.mq5
+│   ├── Agent_A_Example.txt
+│   └── Agent_B_Example.txt
+├── docs/
+│   ├── architecture.svg
+│   ├── protocol.md
+│   ├── csv-format.md
+│   └── FAQ.md
+└── samples/
+    ├── raw_quotes_sample.csv
+    └── comparisons_sample.csv
 ```
 
 ## Requirements
@@ -107,6 +129,13 @@ Coordinator/logs/raw_quotes_YYYYMMDD.csv
 Coordinator/logs/comparisons_YYYYMMDD.csv
 ```
 
+Example datasets are included in:
+
+- [`samples/raw_quotes_sample.csv`](samples/raw_quotes_sample.csv)
+- [`samples/comparisons_sample.csv`](samples/comparisons_sample.csv)
+
+See [`docs/csv-format.md`](docs/csv-format.md) for the complete schema.
+
 ## Suggested initial thresholds
 
 ```text
@@ -117,6 +146,14 @@ ColorMetric=ExecutableEdge
 ```
 
 Thresholds should be calibrated from collected data rather than treated as trading signals.
+
+## Documentation
+
+- [TCP protocol](docs/protocol.md)
+- [CSV formats](docs/csv-format.md)
+- [FAQ and troubleshooting](docs/FAQ.md)
+- [Security policy](SECURITY.md)
+- [Contributing guide](CONTRIBUTING.md)
 
 ## Security and limitations
 
